@@ -2,7 +2,6 @@
 unfinished = []
 completed = []
 
-
 #Function that prints out full to-do list
 def show_tdlist():
     print("To-Do:")
@@ -32,10 +31,11 @@ while True:
     else:
         print("What? Try again.")
 
+#Entering first item on to-do list
 firstitem = input("What is the first item on your to-do list?")
 firstitem = firstitem.capitalize()
 unfinished.append(firstitem)
 show_tdlist()
 print("Looking good so far!")
 
-while True:
+#Loop to add or complete tasks on list
