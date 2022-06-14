@@ -5,8 +5,11 @@ completed = []
 #Function that prints out full to-do list
 def show_tdlist():
     print("To-Do:")
-    for item in unfinished:
-        print(" - " + item)
+    if len(unfinished) == 0:
+        print("None (Let's go!)")
+    else:
+        for item in unfinished:
+            print(" - " + item)
     print()
     print("Completed:")
     if len(completed) == 0:
@@ -25,7 +28,7 @@ while True:
         print("What? Try again.")
         continue
     
-    if response1 == "yes":
+    if response1 == "yes" or response1 == "yes!":
         print("Nice! Let's get started!")
         break
     elif response1 == "no":
@@ -102,7 +105,21 @@ while True:
                 show_tdlist()
                 break
     elif decision == "quit": #quiting out of program
-        print("Thank you for using this program! Three cheers to you for being productive today!")
+        if len(completed) == 0:
+            print("Thank you for using this program!")
+        else:
+            print("Thank you for using this program! Three cheers to you for being productive today!")
+        print()
+        print("Here are your stats for today:")
+        print("Number of unfinished tasks: " + str(len(unfinished)))
+        print("Number of completed tasks: " + str(len(completed)))
+        if len(unfinished) > 0:
+            print()
+            print("***NOTICE***")
+            print("You still have some unfinished tasks. Make sure you complete them later!")
+            print("************")
+        print()
+        print("Please give Jason Chen a high-five the next time you see him\nto let him know what a great job he did on this program!")
         quit()
     else: #Bozo check again
         print("Sorry. Please type add, complete or quit.")
