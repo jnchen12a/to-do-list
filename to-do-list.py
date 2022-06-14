@@ -39,3 +39,28 @@ show_tdlist()
 print("Looking good so far!")
 
 #Loop to add or complete tasks on list
+while True:
+    #Asks question and gets input
+    print("What would you like to do next?")
+    print("Would you like to add a task, complete a previous one, or quit out?")
+    decision = input("Please type add, complete, or quit.")
+
+    #Bozo check
+    try:
+        decision = decision.lower()
+    except:
+        print("Sorry, that makes absolutely no sense. Please type add, complete, or quit.")
+        continue
+    
+    #if else statement that uses input
+    if decision == "add": #adding a task
+        newitem = input("What task would you like to add?")
+        unfinished.append(newitem)
+        show_tdlist()
+    elif decision == "complete":
+        #Stuff
+    elif decision == "quit": #quiting out of program
+        print("Thank you for using this program! Three cheers to you for being productive today!")
+        quit()
+    else: #Bozo check again
+        print("Sorry. Please type add, complete or quit.")
