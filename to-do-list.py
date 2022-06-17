@@ -37,12 +37,76 @@ while True:
     else:
         print("What? Try again.")
 
-#Entering first item on to-do list
-firstitem = input("What is the first item on your to-do list?")
-firstitem = firstitem.capitalize()
-unfinished.append(firstitem)
-show_tdlist()
-print("Looking good so far!")
+#Asking user to create new list or import an existing one
+while True:
+    newimportres = input("Would you like to\n 1. Create a new to-do list\n 2. Import an existing one, or\n 3. Quit out of this program?")
+    
+    #Bozo check
+    try:
+        newimportres = int(newimportres)
+    except:
+        print("Sorry. Please enter 1, 2, or 3.")
+        continue
+    
+    if newimportres == 1: #Creating new to-do list
+        #Entering first item on to-do list
+        firstitem = input("Great! What is the first item on your to-do list?")
+        firstitem = firstitem.capitalize()
+        unfinished.append(firstitem)
+        show_tdlist()
+        print("Looking good so far!")
+        break
+    elif newimportres == 2: #Importing old list
+        while True:
+            print('Please paste your existing to-do list here, with different items seperated by a "-".')
+            importlist = input("If you'd like to quit out, please type quit.")
+            #Bozo Check
+            try:
+                importlist = importlist.lower()
+            except:
+                print("Sorry, something went wrong. Please try again.")
+                continue
+            if importlist == "quit": #Quiting out
+                print("Thank you for using this program.")
+                quit()
+            else: #Trying to import list
+                if "-" not in importlist: #User didn't import a list
+                    print('Sorry, please seperate your items with a "-" and try again.')
+                    continue
+                else: #Spliting input string
+                    importlist = importlist.split("-")
+                    importlist.remove(importlist[0])
+                    for item in importlist:
+                        unfinished.append(item)
+                    show_tdlist()
+                    print("Does that look right?")
+                    while True:
+                        importcheck = input("Please type yes or no.")
+                        try:
+                            importcheck = importcheck.lower()
+                        except:
+                            print("Sorry, something went wrong. Please try again.")
+                            continue
+                        if importcheck == 'yes':
+                            print("Great!")
+                            break
+                        elif importcheck == 'no':
+                            print("Sorry. Please check your list and try again.")
+                            unfinished = []
+                            break
+                        else:
+                            print("Sorry, something went wrong. Please try again.")
+                            continue
+                    break
+        #End of while loop?
+        break
+    elif newimportres == 3: #Quiting out
+        print("Thank you for using this program.")
+        quit()
+    else: #Bozo check
+        print("Sorry. Please enter 1, 2, or 3.")
+        continue
+
 
 #Loop to add or complete tasks on list
 while True:
